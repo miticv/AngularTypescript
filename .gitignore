@@ -1,0 +1,6 @@
+app/bower_components/
+app/node_modules/
+app/temp/
+app/build/
+app/typings/
+app/src/client/app/scripts/

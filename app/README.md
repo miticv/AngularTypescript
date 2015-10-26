@@ -122,9 +122,12 @@ npm install --save-dev gulp-rev gulp-rev-replace gulp-bump
 
 # typescript
 
+```bash
 npm install tsd -g
+```
+```bash
 tsd init
-
+```
 create .tsdrc file:
 ```bash
 {
@@ -135,6 +138,10 @@ create .tsdrc file:
 Install all definitions from tsd.json:
 ```bash
 $ tsd install
+```
+or install library:
+```bash
+$ tsd install angularjs
 ```
 
 Reset the definitions to the commits listed in tsd.json:

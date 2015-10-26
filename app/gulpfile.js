@@ -234,15 +234,8 @@ function serve(isDev) {
     var nodeOptions = {
         script: config.nodeServer,
         delayTime: 1,
-        ext: 'js html ts json',
-        //tasks: function (changedFiles) {
-        //    var tasks = [];
-        //    changedFiles.forEach(function(file) {
-        //        if (file.indexOf('.ts') && tasks.indexOf('wiredep')) tasks.push('wiredep');
-        //    });
-        //    return tasks;
-
-        //},
+        ext: 'js ts html json',
+        //tasks: ['wiredep'],
         env: {
             'PORT': port,
             'NODE_ENV': isDev ? 'dev' : 'build'

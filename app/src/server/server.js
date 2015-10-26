@@ -30,7 +30,7 @@ switch (environment) {
     case 'build':
         console.log('*** BUILD ***');
 
-        app.get('/sd/api.php', function (req, res, next) {
+        app.get('api', function (req, res, next) {
             res.set('Content-Type', 'application/json');
             if (req.query.action == 'get_sensor_log') {
                 res.json(apiHistoryJson);
@@ -45,8 +45,8 @@ switch (environment) {
         });
 
         app.use('/favicon.ico', express.static(__dirname + '/../server/favicon.ico'));
-        app.use('/sd/index.html', express.static(__dirname + '/../../build/index.html'));
-        app.use('/sd', express.static(__dirname + '/../../build'));
+        //app.use('/sd/index.html', express.static(__dirname + '/../../build/index.html'));
+        //app.use('/sd', express.static(__dirname + '/../../build'));
         app.use(express.static(__dirname + '/../../build'));
 
         break;

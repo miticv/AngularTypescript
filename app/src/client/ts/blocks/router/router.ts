@@ -31,14 +31,14 @@ module app {
 
 
         //#region define home page - as escape page also
-        $stateProvider.
-            state("home", {
-                url: "/",
-                template: '<div>{{title}}</div>',
-                controller: function ($scope) {
-                    $scope.title = 'home page';
-                }
-            });
+        //$stateProvider.
+        //    state("home", {
+        //        url: "#/",
+        //        template: '<div>{{title}}</div>',
+        //        controller: function ($scope) {
+        //            $scope.title = 'home page';
+        //        }
+        //    });
         //#endregion define home page - as escape page also
 
         //#region allow case insensitive urls
@@ -52,6 +52,10 @@ module app {
                 //instead of returning a new url string, I'll just change the $location.path directly
                 //so I don't have to worry about constructing a new url string and so a new state change is not triggered
                 $location.replace().path(normalized);
+            }
+            //set home page '/' to be equivalent to one of below acceptable paths:
+            if (path == "" || path == "/" || path == "/#" || path == "/#/") {
+                $location.replace().path('/');
             }
             // because we've returned nothing, no state change occurs
         }
@@ -84,7 +88,7 @@ module app {
                     stateExist = true;
             });
 
-            if (!stateExist ) {
+            if (!stateExist && path.replace('/', '') != "") {
                 logger.warning('"' + path.replace('/', '') + '" page is not found!');
                 $location.replace().path($rootScope.currentUrl || '/'); /* rewrite path to last known url */
             }

@@ -6,11 +6,10 @@ module app.test {
 
     angular.
         module('app.test').
-        config(UserAccountConfig);
+        config(TestConfig);
 
-    UserAccountConfig.$inject = ['$stateProvider'];
-
-    function UserAccountConfig( $stateProvider: ng.ui.IStateProvider) {
+    TestConfig.$inject = ['$stateProvider'];
+    function TestConfig( $stateProvider: ng.ui.IStateProvider) {
 
         $stateProvider.
         state("test", {

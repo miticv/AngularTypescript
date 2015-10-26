@@ -15,7 +15,7 @@ module app.test {
         $stateProvider.
         state("home", {
             url: "/",
-            templateUrl: '/ts/home/home.html',
+            templateUrl: 'home/home.html',
             controller: function ($scope) {
                 $scope.title = 'Home';
             }

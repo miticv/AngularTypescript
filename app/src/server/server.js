@@ -12,9 +12,8 @@ var environment = process.env.NODE_ENV || 'dev';
 process.env.NODE_ENV = environment;
 /* jshint ignore:start */
 
-var apiJson = JSON.parse(fs.readFileSync(__dirname + '/../server/data/apiJson.json', 'utf8'));
-var apiHistoryJson = JSON.parse(fs.readFileSync(__dirname + '/../server/data/apiHistoryJson.json', 'utf8'));
-var apiDefinitionsJson = JSON.parse(fs.readFileSync(__dirname + '/../server/data/apiDefinitionsJson.json', 'utf8'));
+//to generate custom json data go to http://www.json-generator.com/
+var customersJson = JSON.parse(fs.readFileSync(__dirname + '/../server/data/customers.json', 'utf8'));
 var apiErrorJson = { "result": { "error": "unknown request" } };
 /* jshint ignore:end */
 
@@ -32,12 +31,8 @@ switch (environment) {
 
         app.get('api', function (req, res, next) {
             res.set('Content-Type', 'application/json');
-            if (req.query.action == 'get_sensor_log') {
-                res.json(apiHistoryJson);
-            }else if (req.query.action == 'get_sensor_and_uptime_data') {
-                res.json(apiJson);
-            }else if (req.query.action == 'get_sensor_definitions') {
-                res.json(apiDefinitionsJson);
+            if (req.query.action == 'get_customers') {
+                res.json(customersJson);
             } else {
                 res.json(apiErrorJson);
             }
@@ -45,8 +40,6 @@ switch (environment) {
         });
 
         app.use('/favicon.ico', express.static(__dirname + '/../server/favicon.ico'));
-        //app.use('/sd/index.html', express.static(__dirname + '/../../build/index.html'));
-        //app.use('/sd', express.static(__dirname + '/../../build'));
         app.use(express.static(__dirname + '/../../build'));
 
         break;
@@ -55,12 +48,8 @@ switch (environment) {
 
         app.get('/api', function (req, res, next) {
             res.set('Content-Type', 'application/json');
-            if (req.query.action == 'get_sensor_log') {
-                res.json(apiHistoryJson);
-            }else if (req.query.action == 'get_sensor_and_uptime_data') {
-                res.json(apiJson);
-            }else if (req.query.action == 'get_sensor_definitions') {
-                res.json(apiDefinitionsJson);
+            if (req.query.action == 'get_customers') {
+                res.json(customersJson);
             } else {
                 res.json(apiErrorJson);
             }

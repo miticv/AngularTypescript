@@ -1,4 +1,4 @@
-﻿/// <reference path="../_all.ts" />
+﻿/// <reference path="../typescriptapp.d.ts" />
 
 
 module app.test {

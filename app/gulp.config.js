@@ -1,6 +1,7 @@
 module.exports = function () {
     var angularAppName = 'app';
     var client = './src/client/';
+    var tsfolder = './src/client/ts/';
     var server = './src/server/';
     var report = './report/';
     var clientApp = 'app/';
@@ -20,9 +21,13 @@ module.exports = function () {
             '!' + bowerComponents + '/**/*.*'
         ],
         allTs: [
-            './src/client/ts/**/*.ts',
-            './app/typings/**/*.ts'
+            './typings/**/*.ts',
+            tsfolder + '**/*.ts',
+            '!' + tsfolder + 'typescriptApp.d.ts'
         ],
+        tsfolder: tsfolder,
+        appTypeScriptReferences: tsfolder + 'typescriptApp.d.ts',
+        typings: './typings',
         tsOutputPath : './src/client/app/scripts',
         libraryTs: './tools/typings/**/*.ts',
         temp: temp,

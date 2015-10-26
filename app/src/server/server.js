@@ -60,7 +60,7 @@ switch (environment) {
         app.use('/temp', express.static(__dirname + '/../../temp'));
         app.use('/bower_components', express.static(__dirname + '/../../bower_components'));
         app.use('/src/client/app', express.static(__dirname + '/../client/app'));
-        app.use('/app/ts/', express.static(__dirname + '/../client/ts'));
+        app.use('/app/ts/', express.static(__dirname + '/../client/ts')); //for debuging ts
         app.use(express.static(__dirname + '/../client'));
 
         break;

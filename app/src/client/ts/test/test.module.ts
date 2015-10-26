@@ -1,5 +1,4 @@
-﻿/// <reference path="../_all.ts" />
-
+﻿/// <reference path="../typescriptapp.d.ts" />
 'use strict';
 module app.test {
 

@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../../typings/tsd.d.ts" />
-
+﻿/// <reference path="../typescriptapp.d.ts" />
 module app {
 
     angular.module('app.core').config(toastrConfig);

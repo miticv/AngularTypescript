@@ -111,18 +111,33 @@ gulp.task('templatecache', ['clean-code'], function (done) {
         .pipe(gulp.dest(config.temp));
 });
 
+/**
+ * Generates the app.d.ts references file dynamically from all application *.ts files.
+ */
+ gulp.task('gen-ts-refs', function () {
+     var target = gulp.src(config.appTypeScriptReferences);
+     var sources = gulp.src(config.allTs, { read: false });
+     return target.pipe($.inject(sources, {
+         starttag: '//{',
+         endtag: '//}',
+         transform: function (filepath) {
+             return '/// <reference path="../../..' + filepath + '" />';
+         }
+     })).pipe(gulp.dest(config.tsfolder));
+ });
+
 gulp.task('compile-ts', ['clean-ts'], function () {
     'use strict';
     log('Compile typescript files');
    var tsProject = $.typescript.createProject('tsconfig.json');
 
-    return gulp
-        .src(config.allTs)
-        .pipe($.sourcemaps.init())
-        .pipe($.typescript(tsProject))
-        .pipe(gulp.dest(config.tsOutputPath))
-        .pipe($.sourcemaps.write('.'))
-        .pipe(gulp.dest(config.tsOutputPath));
+   return gulp
+       .src(config.allTs)
+       .pipe($.sourcemaps.init())
+       .pipe($.typescript(tsProject))
+       .pipe(gulp.dest(config.tsOutputPath))
+       .pipe($.sourcemaps.write('.'))
+       .pipe(gulp.dest(config.tsOutputPath));
 });
 
 

@@ -7,8 +7,6 @@ module app.home {
 
         private logger: ILogger;
 
-
-
         static $inject = ['logger'];
         constructor(logger: ILogger) {
             var self = this;

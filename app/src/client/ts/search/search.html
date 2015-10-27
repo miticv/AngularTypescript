@@ -1,0 +1,53 @@
+﻿<br/>
+<ol class="breadcrumb">
+    <li>{{title}}</li>
+</ol>
+
+<div ng-controller="searchController as vm">
+
+</div>
+
+<form role="form" name="clientForm" ng-submit="editClientProfile()" class="ng-pristine ng-valid ng-valid-required">
+    <div class="row form-group">
+        <div class="col-sm-3">
+            <label for="first-name" class="control-label">
+                First Name
+            </label>
+            <input id="first-name" name="firstName" type="text"
+                   class="form-control input-sm ng-pristine ng-valid ng-valid-special-character"
+                   ui-no-special-chars=""
+                   char-limit="30"
+                   char-limit-tooltip="hide"
+                   ng-model="clientProfile.item.firstName"
+                   ng-disabled="readOnly"
+                   disabled="disabled">
+        </div>
+
+        <div class="col-sm-3">
+            <label class="control-label">
+                Home Phone
+            </label>
+            <div class="right-inner-addon">
+                <input name="homePhone" class="form-control input-sm ng-pristine ng-valid ng-valid-mask" type="tel" ui-mask="(999) 999-9999" ng-model="clientProfile.item.phone1" ng-disabled="readOnly" placeholder="home phone" disabled="disabled">
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+            <label class="control-label">
+                Ext
+            </label>
+            <div class="right-inner-addon">
+                <input name="workExt" class="form-control input-sm ng-pristine ng-valid" type="text" char-limit="8" char-limit-tooltip="hide" ng-model="clientProfile.item.homePhoneExtension" ng-trim="false" ng-disabled="readOnly" disabled="disabled">
+            </div>
+        </div>
+
+        <div class="col-sm-3" ng-hide="clientProfile.item.clientOrderNo > 2">
+            <label class="control-label">Call Time</label>
+            <select class="form-control input-sm ng-pristine ng-valid" ng-class="{ red: clientProfile.item.homeCallTime === 'Do Not Call' }" ng-model="clientProfile.item.homeCallTime" ng-hide="callTimeFreeForm.homeCallTime" ng-change="checkSelectedOther(clientProfile.item.homeCallTime, 'homeCallTime')" ng-options="selected as selected for selected in callTimes" ng-disabled="readOnly" disabled="disabled"><option value="" disabled="" class=""></option><option value="0">Anytime</option><option value="1">Do Not Call</option><option value="2">Other</option></select>
+
+            <div class="right-inner-addon ng-hide" ng-show="callTimeFreeForm.homeCallTime">
+                <input class="form-control input-sm ng-pristine ng-valid" type="text" char-limit="16" ng-model="clientProfile.item.homeCallTime" ng-disabled="readOnly" data-original-title="" title="" disabled="disabled">
+            </div>
+        </div>
+    </div>
+ </form>

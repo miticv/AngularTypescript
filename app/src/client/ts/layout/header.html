@@ -19,11 +19,11 @@
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                   <ul class="nav navbar-nav">
                       <li ng-class="{active: $state.includes('home')}"><a ui-sref="home" href="#/">Home</a></li>
-                      <li class="dropdown" ng-class="{active: $state.includes('test')}">
+                      <li class="dropdown" ng-class="{active: $state.includes('test') || $state.includes('search') || $state.includes('add')}">
                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Actions <span class="caret"></span></a>
                           <ul class="dropdown-menu">
-                              <li><a href="#/add">Add</a></li>
-                              <li><a href="#/search">Search</a></li>
+                              <li ng-class="{active: $state.includes('add')}"><a ui-sref="add">Add</a></li>
+                              <li ng-class="{active: $state.includes('search')}"><a ui-sref="search">Search</a></li>
                               <li role="separator" class="divider"></li>
                               <li ng-class="{active: $state.includes('test')}"><a ui-sref="test">Error notifications</a></li>
                               <li><a href="#/not-exist">Non-Existing page</a></li>

@@ -1,7 +1,7 @@
 ﻿/// <reference path="../typescriptapp.d.ts" />
 
 
-module app.test {
+module app.home {
     'use strict';
 
     angular.

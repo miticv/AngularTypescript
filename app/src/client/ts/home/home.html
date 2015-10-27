@@ -1,8 +1,10 @@
-﻿<h1>{{title}}</h1>
+﻿
+<h1>{{title}}</h1>
+
 <div ng-controller="homeController as vm">
     Hello you are home
 </div>
-
+<br/>
 <uib-accordion>
     <uib-accordion-group is-open="isopen" ng-click="isopen=!isopen" class="panel panel-primary" template-url="widgets/templates/group-template.html">
         <uib-accordion-heading>

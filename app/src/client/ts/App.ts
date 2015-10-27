@@ -17,7 +17,9 @@ module app {
          */
         'app.layout',
         'app.test',
-        'app.home'
+        'app.home',
+        'app.search',
+        'app.add'
     ]);
 
 }

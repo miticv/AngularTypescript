@@ -10,6 +10,7 @@ module app {
         'ngSanitize',
         'ngAnimate',
         'ui.router',
+        'ui.bootstrap',
         /*
          * Our reusable cross app code modules
          */

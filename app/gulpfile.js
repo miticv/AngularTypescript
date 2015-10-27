@@ -1,3 +1,4 @@
+/// <binding />
 /*global require, log, clean */
 
 var gulp = require('gulp');
@@ -92,12 +93,6 @@ gulp.task('clean-code', function (done) {
     clean(files, done);
 });
 
-gulp.task('less-watcher', function () {
-    'use strict';
-    gulp.watch([config.less], ['styles']);
-
-});
-
 gulp.task('templatecache', ['clean-code'], function (done) {
     'use strict';
     log('Createing AngularJS  $templateCache');
@@ -140,6 +135,21 @@ gulp.task('compile-ts', ['clean-ts'], function () {
        .pipe(gulp.dest(config.tsOutputPath));
 });
 
+gulp.task('ts-watcher', function () {
+    'use strict';
+    gulp.watch([config.allTs], ['compile-ts']);
+
+});
+gulp.task('less-watcher', function () {
+    'use strict';
+    gulp.watch([config.less], ['styles']);
+
+});
+gulp.task('html-watcher', function () {
+    'use strict';
+    gulp.watch([config.htmltemplates], ['inject']);
+
+});
 
 gulp.task('wiredep', ['compile-ts'], function () {
     'use strict';
@@ -250,12 +260,21 @@ function serve(isDev) {
         script: config.nodeServer,
         delayTime: 1,
         ext: 'js ts html json',
-        //tasks: ['wiredep'],
+        stdin: false,        //these 2 lines fixes runing nodemon
+        restartable: false,  //under VS task runner
+        //tasks: function (changedFiles) {
+        //    var tasks = [];
+        //    changedFiles.forEach(function (file) {
+        //        if (file.indexOf('.ts') >0 && !~tasks.indexOf('compile-ts')) tasks.push('compile-ts');
+        //        if (file.indexOf('.html') > 0 && !~tasks.indexOf('templatecache')) tasks.push('templatecache');
+        //    })
+        //    return tasks;
+        //},
         env: {
             'PORT': port,
             'NODE_ENV': isDev ? 'dev' : 'build'
         },
-        watch: [config.server, config.client]
+        watch: [config.server, config.tsfolder ]
     };
     return $.nodemon(nodeOptions)
         .on('restart', function (ev) {

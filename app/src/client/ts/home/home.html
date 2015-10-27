@@ -1,7 +1,13 @@
-﻿<br/>
-
-<h1>{{title}}</h1>
-
+﻿<h1>{{title}}</h1>
 <div ng-controller="homeController as vm">
     Hello you are home
 </div>
+
+<uib-accordion>
+    <uib-accordion-group is-open="isopen" ng-click="isopen=!isopen" class="panel panel-primary" template-url="widgets/templates/group-template.html">
+        <uib-accordion-heading>
+                Sample Accordian <i class="pull-right fa" ng-class="{'fa-caret-square-o-up': isopen, 'fa-caret-square-o-down': !isopen}"></i>
+        </uib-accordion-heading>
+        This is just some content to illustrate fancy headings.
+    </uib-accordion-group>
+</uib-accordion>
